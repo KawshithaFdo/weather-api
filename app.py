@@ -15,8 +15,9 @@ def api():
     data['negative'] = negative
     return data
 
-@app.route('/send-comments/<comment>',methods=['POST'])
-def sendComment(comment):
+@app.route('/send-comments',methods=['POST'])
+def sendComment():
+    comment = request.args.get('comment')
     preProcessedText = preprocessing(comment)
     vectorizedText = vectorizer(preProcessedText)
     prediction = get_prediction(vectorizedText)
